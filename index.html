@@ -1,174 +1,128 @@
 <!DOCTYPE html>
-<html lang="""en
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>VahanGo - Coming Soon</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #0a2239;
-            color: #fff;
-        }
-        body {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .header {
-            position: absolute;
-            top: 40px;
-            width: 100%;
-            text-align: center;
-            font-size: 3rem;
-            font-weight: bold;
-            letter-spacing: 0.1em;
-            color: #ffb400;
-            text-shadow: 0 2px 16px #0008;
-            z-index: 2;
-            user-select: none;
-        }
-        .coming-soon {
-            position: relative;
-            z-index: 2;
-            font-size: 2.5rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            margin-top: 120px;
-            padding: 32px 48px;
-            background: rgba(10,34,57,0.7);
-            border-radius: 24px;
-            box-shadow: 0 4px 32px #0005;
-            border: 2px solid #ffb400;
-            text-shadow: 0 2px 8px #0006;
-            user-select: none;
-        }
-        #bg-canvas {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VahanGo - Coming Soon</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at bottom, #020202 0%, #0b0b0b 100%);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      color: white;
+      position: relative;
+    }
+
+    /* Starfield background */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: twinkleMove 10s infinite ease-in-out;
+    }
+
+    @keyframes twinkleMove {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+      50% { transform: translateY(-10px) scale(1.3); opacity: 1; }
+    }
+
+    /* Vehicle icons (simplified) */
+    .vehicle {
+      position: absolute;
+      opacity: 0.15;
+      filter: blur(4px);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .content {
+      text-align: center;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #fff;
+      position: relative;
+      z-index: 3;
+      display: inline-block;
+      padding: 20px 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    h1::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: skewX(-25deg);
+      transition: left 0.7s ease;
+      z-index: -1;
+    }
+
+    h1:hover::before {
+      left: 125%;
+    }
+
+    h1:hover {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(25px) brightness(1.3);
+    }
+  </style>
 </head>
 <body>
-    <div class="header">VahanGo</div>
-    <canvas id="bg-canvas"></canvas>
-    <div class="coming-soon">Coming Soon</div>
-    <script>
-        // Canvas setup
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let w = window.innerWidth, h = window.innerHeight;
-        function resize() {
-            w = window.innerWidth;
-            h = window.innerHeight;
-            canvas.width = w;
-            canvas.height = h;
-        }
-        window.addEventListener('resize', resize);
-        resize();
+  <div class="content">
+    <h1>COMING SOON</h1>
+  </div>
 
-        // Floating particles
-        const particles = Array.from({length: 60}, () => ({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            r: 1 + Math.random() * 2.5,
-            dx: -0.2 + Math.random() * 0.4,
-            dy: -0.1 + Math.random() * 0.2,
-            alpha: 0.2 + Math.random() * 0.5
-        }));
+  <!-- Vehicle SVGs -->
+  <svg class="vehicle" style="top: 20%; right: 20%; width: 80px;" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--noto" preserveAspectRatio="xMidYMid meet" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M72.67 71.53s-21.87-.21-22.16.02c-.3.23-.52 1.26-.52 3.52c0 2.27 1.11 3.17 1.53 3.2c1.18.08 3.28 0 3.28 0s-1.01 2.44-1.01 3.36s.17 14.62.17 14.62l18.49-1.6l.22-23.12z" fill="#2f7c31"></path><path d="M96.98 71.71l-14.37.3s-1.09 1.26-1.01 3.28c.08 2.02 1.24 3.53 1.24 3.53l3.52.15s-.15 1.87-.15 3.74c0 .88-.11 12.08-.11 12.08l3.23 1.33l12.6-9.08l-4.95-15.33z" fill="#2f7c31"></path><path fill="#4e433d" d="M29.08 83.06l-4.87 4.46l10.08 11.09l7.9-1.51z"></path><path d="M36.07 62.46l-13.49-2.74s-.06-1.24.53-3.55c1.6-6.28 9.71-24.02 9.71-24.02l9.78-2.82l.18 31.89l-6.71 1.24z" fill="#afe3fb"></path><path d="M70.9 33.04c.12 1.39-.02 36.05-.02 36.05l6.71-.99l.13-35.16l-6.82.1z" fill="#b0b0b0"></path><path d="M23.91 70.39l-1.35-2.25s-.25-2.63-.14-5.15c.05-1.15.14-3.33.14-3.33s13.08.07 14.66.07s3.35-1.32 3.35-4.14s.41-21.46.41-21.46L27.88 22.2l-.79-4.49s3.61-2.82 8.72-2.29c5.11.53 8.11 4.49 8.11 4.49s58.85.19 61.15.18c6.02-.03 8.45 1.33 12.32 5.72c3.03 3.43 4.68 9.7 5.03 12.78c.35 3.08 3 23.79 2.91 25.29s-.35 3.52-1.94 3.79c-1.59.26-4.05 1.5-4.05 1.5l-17.62.62l-2.83-.13s-.1-28.8-.01-30.47c.09-1.67-.68-3.44-2.97-3.62c-2.29-.18-14.82.13-24.77.04c-9.96-.09-24.51-.32-24.51-.32l-.28 32.31l-13.37 4.47l-9.07-1.68z" fill="#ffb803"></path><path d="M17.29 19.36c-.17 1.57 14.51 14.66 14.78 14.66c.26 0 8.83.26 8.99.17c.33-.18-13.81-16.68-13.81-16.68s-9.79.28-9.96 1.85z" fill="#536f7d"></path><path d="M22.51 67.63l23.87-.12l-.08 26.91s8.57-.01 10.55-.01c1.98 0 3.6-1.28 3.72-3.49c.12-2.21-.12-8.6-.12-9.99s.58-2.44 2.67-2.56c2.09-.12 7.74-.03 7.74-.03V67.71l6.75-.05s-.09 20.84.02 22.7s1.17 3.71 2.8 3.71s12.2.12 12.2.12l1.04-5.54s-1.04-10.03.59-14.1s4.61-6.53 4.61-6.53l24.5-.36s.29 28.96.29 29.78c0 .81-1.39 3.49-1.39 3.49l-38.47-.12l-47.65-.12l-5.58-3.49s1.16-.58 3.02-.7s3.14-1.28 2.21-2.79s-8.12-7.29-11.16-15.34c-1.93-5.16-2.13-10.74-2.13-10.74z" fill="#02ab46"></path><path d="M11.64 121.14c-7.11-4.76-8.97-14.2-4.21-21.31s14.33-9.08 21.29-4.11c7.64 5.46 9.01 14.39 4.25 21.5c-4.76 7.11-14.22 8.68-21.33 3.92z" fill="#4e433d"></path><path d="M22.86 114.32c3.6-1.61 4.93-5.58 3.43-9.06c-1.26-2.91-4.99-4.95-8.47-3.49c-3.34 1.41-5.44 5.04-4 8.86c1.35 3.59 5.26 5.38 9.04 3.69z" fill="#1c1d1e"></path><path d="M18.63 110.56c-1.35-.9-1.71-2.69-.81-4.03s2.71-1.71 4.03-.77c1.45 1.04 1.71 2.73.81 4.07c-.89 1.34-2.68 1.63-4.03.73z" fill="#4e433d"></path><path d="M83.34 107.38s-1.82-22.41 20.16-22.93s20.68 23.01 20.25 23.36s-40.41-.43-40.41-.43z" fill="#2f7c31"></path><path d="M119.53 107.54c0 9.14-7.26 16.4-16.4 16.4s-16.57-7.31-16.3-16.45c.3-10.03 7.41-16.55 16.55-16.55s16.15 7.46 16.15 16.6z" fill="#4e433d"></path><path d="M106.81 101.64c-3.56-2.24-7.88-1.06-10.07 2.34c-1.83 2.85-1.42 7.37 1.94 9.58c3.23 2.12 7.71 1.83 10.24-1.72c2.37-3.32 1.64-7.85-2.11-10.2z" fill="#1c1d1e"></path><path d="M105.99 107.63c0 1.73-1.37 3.11-3.1 3.11s-3.13-1.39-3.08-3.12c.06-1.9 1.4-3.14 3.13-3.14s3.05 1.41 3.05 3.15z" fill="#4e433d"></path><path d="M100.73 72.35c-.52.35-.49 4.9-.25 4.98c.38.13 13.62.13 13.62.13l.13-4.92s-13.31-.31-13.5-.19z" fill="#ff8b00"></path><path d="M35.37 105.27s4.27.27 4.71-.04c.44-.32-9.19-19.34-21.29-21.08c-8.28-1.19-13.31 2.39-15.2 6.43c-1.87 3.99-1.23 8.45-1.07 8.58c.32.25 10.3-4.95 18.92-2.96c9.21 2.12 13.93 9.07 13.93 9.07z" fill="#2f7c31"></path><path d="M20.68 79.23c0 1.83-4.6 6.24-10.22 6.69c-2.33.18-5.21-2.2-5.11-6.94c.12-5.23 2.33-6.88 4.6-6.94c5.69-.16 10.73 4.85 10.73 7.19z" fill="#b0b0b0"></path><path d="M9.23 82.82c-1.26.06-2.33-1.77-2.21-4.42c.09-1.95 1.07-3.85 2.02-3.85c1.2 0 2.02 1.83 2.02 4.23c0 1.9-.7 3.99-1.83 4.04z" fill="#ffffff"></path></g></svg>
 
-        // Simple vehicle SVGs
-        const vehicleSVGs = [
-            `<svg width="60" height="28" viewBox="0 0 60 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="8" y="10" width="36" height="10" rx="4" fill="#3ec6e0"/>
-                <rect x="44" y="13" width="10" height="7" rx="2" fill="#ffb400"/>
-                <circle cx="16" cy="22" r="4" fill="#222"/>
-                <circle cx="44" cy="22" r="4" fill="#222"/>
-            </svg>`,
-            `<svg width="50" height="22" viewBox="0 0 50 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="6" y="8" width="28" height="8" rx="3" fill="#ff5e5b"/>
-                <rect x="34" y="10" width="8" height="6" rx="2" fill="#3ec6e0"/>
-                <circle cx="14" cy="18" r="3" fill="#222"/>
-                <circle cx="34" cy="18" r="3" fill="#222"/>
-            </svg>`,
-            `<svg width="40" height="18" viewBox="0 0 40 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4" y="6" width="20" height="6" rx="2" fill="#bada55"/>
-                <rect x="24" y="8" width="6" height="4" rx="1" fill="#ffb400"/>
-                <circle cx="10" cy="14" r="2.5" fill="#222"/>
-                <circle cx="24" cy="14" r="2.5" fill="#222"/>
-            </svg>`
-        ];
+  <svg class="vehicle" style="top: 35%; left: 20%; width: 100px;" viewBox="0 0 1080 1080"  version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M766.976 508.736c80.576 0 152.448 32.128 199.232 82.176" fill="#AEBCC3"></path><path d="M64.704 684.992c10.816 19.2 32.064 32.192 56.576 32.192h784.64c35.84 0 64.832-27.648 64.832-61.76v-17.408h-36.608a15.744 15.744 0 0 1-16.064-15.296V550.912a277.568 277.568 0 0 0-150.144-44.16h1.6l-55.04-0.256c-53.632-115.2-157.504-210.752-294.208-210.752-136.512 0-251.008 89.728-282.176 210.688h-16.832c-35.456 0-56.128 27.392-56.128 61.184" fill="#ffffff"></path><path d="M64.704 654.464h13.76a39.168 39.168 0 0 0 40.064-38.272v-17.6c0-21.12-17.92-38.208-40.064-38.208h-13.376" fill="#F5BB1D"></path><path d="M160 684.992a101.632 96.832 0 1 0 203.264 0 101.632 96.832 0 1 0-203.264 0Z" fill="#455963"></path><path d="M218.88 684.992a42.752 40.768 0 1 0 85.504 0 42.752 40.768 0 1 0-85.504 0Z" fill="#AEBCC3"></path><path d="M652.032 684.992a101.568 96.832 0 1 0 203.136 0 101.568 96.832 0 1 0-203.136 0Z" fill="#455963"></path><path d="M710.912 684.992a42.752 40.768 0 1 0 85.504 0 42.752 40.768 0 1 0-85.504 0Z" fill="#AEBCC3"></path><path d="M966.272 591.104v-0.192a257.92 257.92 0 0 0-48.192-40V622.72c0 8.448 7.232 15.296 16.064 15.296h36.608v-42.304l-4.48-4.608z" fill="#F5BB1D"></path><path d="M405.568 335.616c-104.896 6.336-191.296 76.8-216.64 170.816h216.64V335.616zM445.696 506.432h216.64c-41.216-86.848-117.12-159.616-216.64-170.048v170.048z" fill="#666666"></path></g></svg>
 
-        // Vehicles floating
-        const vehicles = Array.from({length: 5}, (_, i) => ({
-            svg: vehicleSVGs[i % vehicleSVGs.length],
-            x: Math.random() * w,
-            y: 80 + Math.random() * (h - 200),
-            scale: 0.7 + Math.random() * 0.7,
-            speed: 0.2 + Math.random() * 0.15,
-            floatPhase: Math.random() * Math.PI * 2
-        }));
-
-        function drawParticles() {
-            for (const p of particles) {
-                ctx.save();
-                ctx.globalAlpha = p.alpha;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
-                ctx.fillStyle = "#fff";
-                ctx.shadowColor = "#fff";
-                ctx.shadowBlur = 8;
-                ctx.fill();
-                ctx.restore();
-
-                p.x += p.dx;
-                p.y += p.dy;
-                if (p.x < 0) p.x = w;
-                if (p.x > w) p.x = 0;
-                if (p.y < 0) p.y = h;
-                if (p.y > h) p.y = 0;
-            }
-        }
-
-        function drawVehicles(t) {
-            vehicles.forEach(v => {
-                // Animate horizontal movement
-                v.x += v.speed;
-                if (v.x > w + 60) v.x = -60;
-                // Animate floating
-                const floatY = Math.sin(t / 900 + v.floatPhase) * 12;
-                // Draw SVG
-                const img = new window.Image();
-                const svg64 = btoa(v.svg);
-                img.src = 'data:image/svg+xml;base64,' + svg64;
-                ctx.save();
-                ctx.globalAlpha = 0.55;
-                ctx.translate(v.x, v.y + floatY);
-                ctx.scale(v.scale, v.scale);
-                ctx.drawImage(img, 0, 0);
-                ctx.restore();
-            });
-        }
-
-        function animate(t) {
-            ctx.clearRect(0, 0, w, h);
-            drawParticles();
-            drawVehicles(t || 0);
-            requestAnimationFrame(animate);
-        }
-        animate();
-    </script>
+  <!-- <svg  viewBox="0 0 64 64" fill="none">
+    <polygon points="10,54 54,54 32,10" stroke="white" stroke-width="2" fill="none" />
+  </svg> -->
+  <svg class="vehicle" style="bottom: 30%; right: 10%; width: 50px;" height="200px" width="200px" version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" fill="#000000" transform="rotate(45)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="1.024"></g><g id="SVGRepo_iconCarrier"> <style type="text/css"> .st0{fill:#b2a4a4;} </style> <g> <path class="st0" d="M488.649,180.545v-25.082c0,0-50.161-5.193-110.703,18.159c-60.542,23.352-104.649,17.3-110.703,11.243 c-6.054-6.05-33.728-32.864-38.056-36.325c-4.323-3.455-12.974-17.294-22.486-8.647c-1.662,1.514-3.432,2.387-5.221,3.022 l9.652-19.84c1.561-3.202,4.807-5.236,8.369-5.236h52.065c5.016,0,4.673-4.067,4.673-9.086c0-5.02,0.342-9.08-4.673-9.08h-52.065 c-10.514,0-20.103,6-24.7,15.455l-11.946,24.556c-5.088-3.887-24.606-17.337-52.696-18.816v60.535c0,0,20.86-1.868,33.516-4.025 l-14.654,24.672c-20.244-11.358-43.938-17.099-68.829-15.238c-19.056,1.414-36.768,7.147-52.255,16.14l5.736,17.207 c12.66-6.592,26.831-10.788,41.972-11.914c24.751-1.846,45.419,2.005,62.774,11.655l-16.71,28.126 c-10.875-4.962-22.922-7.804-35.658-7.804C38.525,240.221,0,278.745,0,326.271c0,47.525,38.525,86.057,86.053,86.057 c47.524,0,86.053-38.532,86.053-86.057c0-27.347-12.797-51.664-32.683-67.422l15.93-26.821 c16.096,14.698,28.63,36.174,38.377,64.833c0.328,0.974,11.625,10.659,11.675,11.684l1.435-3.13 c1.476,27.722,23.211,28.212,23.211,28.212s56.215,0,81.297,0C342.486,215.138,467.893,186.595,488.649,180.545z M137.515,326.271 c0,28.421-23.045,51.462-51.462,51.462c-28.421,0-51.463-23.041-51.463-51.462c0-28.414,23.042-51.463,51.463-51.463 c6.274,0,12.263,1.183,17.824,3.238l-18.138,30.527c-9.645,0.173-17.42,8.012-17.42,17.697c0,9.793,7.94,17.733,17.734,17.733 s17.73-7.94,17.73-17.733c0-2.005-0.408-3.908-1.024-5.712l18.736-31.529C131.346,298.404,137.515,311.602,137.515,326.271z M166.186,213.797l13.327-22.436c5.989,14.965,12.797,38.72,18.104,60.773C189.825,237.235,179.066,224.24,166.186,213.797z"></path> <path class="st0" d="M425.947,240.221c-47.525,0-86.054,38.525-86.054,86.05c0,47.525,38.528,86.057,86.054,86.057 c47.525,0,86.053-38.532,86.053-86.057C512,278.745,473.472,240.221,425.947,240.221z M425.947,377.733 c-28.422,0-51.463-23.041-51.463-51.462c0-28.414,23.041-51.463,51.463-51.463c28.418,0,51.459,23.049,51.459,51.463 C477.406,354.692,454.364,377.733,425.947,377.733z"></path> <path class="st0" d="M425.947,308.545c-9.794,0-17.73,7.932-17.73,17.726c0,9.793,7.936,17.733,17.73,17.733 c9.793,0,17.73-7.94,17.73-17.733C443.676,316.477,435.74,308.545,425.947,308.545z"></path> </g> </g></svg>
+  <script>
+    const starCount = 100;
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 2 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.animationDuration = `${5 + Math.random() * 10}s`;
+      document.body.appendChild(star);
+    }
+  </script>
 </body>
-</html>"></html>
+</html>
